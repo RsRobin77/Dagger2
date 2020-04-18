@@ -22,10 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CarComponent component= DaggerCarComponent.builder()
-                .horsePower(150)
-                .engineCapacity(1400)
-                .build();
+        CarComponent component=((ExampleApp)getApplication()).getComponent();
         component.inject(this);
 
         car1.Drive();
