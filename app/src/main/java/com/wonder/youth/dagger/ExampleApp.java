@@ -2,23 +2,22 @@ package com.wonder.youth.dagger;
 
 import android.app.Application;
 
-import com.wonder.youth.dagger.dagger.CarComponent;
-import com.wonder.youth.dagger.dagger.DaggerCarComponent;
+import com.wonder.youth.dagger.dagger.ActivityComponent;
+import com.wonder.youth.dagger.dagger.AppComponent;
+import com.wonder.youth.dagger.dagger.DaggerAppComponent;
 
 public class ExampleApp extends Application {
 
-    private CarComponent component;
+    private AppComponent component;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        component= DaggerCarComponent.builder()
-                .horsePower(120)
-                .engineCapacity(1400)
-                .build();
+        component= DaggerAppComponent.create();
+
     }
 
-    public CarComponent getComponent(){
+    public AppComponent getComponent(){
         return component;
     }
 

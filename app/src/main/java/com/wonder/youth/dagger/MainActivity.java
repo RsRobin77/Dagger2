@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.wonder.youth.dagger.car.Car;
-import com.wonder.youth.dagger.dagger.CarComponent;
-import com.wonder.youth.dagger.dagger.DaggerCarComponent;
-import com.wonder.youth.dagger.dagger.DieselEngineModule;
-import com.wonder.youth.dagger.dagger.PetrolEngineModule;
+import com.wonder.youth.dagger.dagger.ActivityComponent;
+import com.wonder.youth.dagger.dagger.DaggerAppComponent;
 
 import javax.inject.Inject;
 
@@ -21,8 +19,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        CarComponent component=((ExampleApp)getApplication()).getComponent();
+//
+        ActivityComponent component= DaggerActivityComponent.builder()
+                .horsePoer(120)
+                .engineCapacity(1400)
+                .appComponent(((ExampleApp)getApplication()).getComponent())
+                .build();
         component.inject(this);
 
         car1.Drive();

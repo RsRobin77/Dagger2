@@ -2,18 +2,15 @@ package com.wonder.youth.dagger.dagger;
 
 import com.wonder.youth.dagger.MainActivity;
 import com.wonder.youth.dagger.car.Car;
-import com.wonder.youth.dagger.car.DieselEngine;
-import com.wonder.youth.dagger.car.PetrolEngine;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
 
-@Singleton
-@Component(modules = {WheelsModule.class, PetrolEngineModule.class})
-public interface CarComponent {
+@PerActivity
+@Component(dependencies = AppComponent.class, modules = {WheelsModule.class, PetrolEngineModule.class})
+public interface ActivityComponent {
     Car getCar();
 
 void inject(MainActivity mainActivity);
@@ -25,7 +22,10 @@ interface Builder{
     Builder horsePower(@Named("horse power") int horsePower);
     @BindsInstance
     Builder engineCapacity(@Named("engine capacity") int engineCapacity);
-    CarComponent build();
+
+    Builder appComponent(AppComponent component);
+
+    ActivityComponent build();
 }
 
 }
