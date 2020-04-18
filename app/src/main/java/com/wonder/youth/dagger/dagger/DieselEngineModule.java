@@ -5,10 +5,23 @@ import com.wonder.youth.dagger.car.Engine;
 
 import dagger.Binds;
 import dagger.Module;
+import dagger.Provides;
 
 @Module
-public abstract class DieselEngineModule {
+public  class DieselEngineModule {
 
-    @Binds
-    abstract Engine bindEngine(DieselEngine engine);
+    private int horsePower;
+
+    public DieselEngineModule(int horsePower) {
+        this.horsePower = horsePower;
+    }
+    @Provides
+    int provideHorsePower(){
+        return horsePower;
+    }
+
+    @Provides
+    Engine provideEngine(DieselEngine engine){
+        return engine;
+    }
 }
