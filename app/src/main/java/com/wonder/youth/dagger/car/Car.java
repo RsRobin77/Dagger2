@@ -6,11 +6,14 @@ import javax.inject.Inject;
 
 public class Car {
     private static final String TAG = "Car";
+
+    private Driver driver;
     private Engine engine;
     private Wheels wheels;
 
     @Inject
-    public Car(Engine engine, Wheels wheels) {
+    public Car(Driver driver, Engine engine, Wheels wheels) {
+        this.driver = driver;
         this.engine = engine;
         this.wheels = wheels;
     }
@@ -22,6 +25,6 @@ public class Car {
 
     public void Drive(){
         engine.start();
-        Log.d(TAG, "car driving... ");
+        Log.d(TAG, driver+" drivers "+ this);
     }
 }
